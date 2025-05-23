@@ -6,11 +6,22 @@ class ProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        context.go('/products/detail/1');
-      },
-      child: Text("Product detail"),
+    return Scrollbar(
+      thumbVisibility: true,
+      child: SingleChildScrollView(
+        child: Column(
+          children: List.generate(
+            20,
+            (item) => ListTile(
+              onTap: () {
+                context.go('/products/detail/$item');
+              },
+              title: Text("Ten san pham $item"),
+              subtitle: Text("Ten san pham $item"),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

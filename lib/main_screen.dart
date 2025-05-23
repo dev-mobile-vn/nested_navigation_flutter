@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:window_manager/window_manager.dart';
 
 class MainScreen extends StatefulWidget {
   final Widget child;
@@ -19,8 +20,8 @@ class _MainScreenState extends State<MainScreen> {
     "/orders",
     "/categories",
     "/products",
-    "account",
-    "setting",
+    "/account",
+    "/setting",
   ];
 
   @override
@@ -46,43 +47,58 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Row(
         children: [
           Row(
             children: [
               NavigationRail(
+                backgroundColor: Colors.white,
                 labelType: NavigationRailLabelType.all,
                 destinations: const [
                   NavigationRailDestination(
                     icon: Icon(Icons.dashboard),
                     label: Text(
-                      "Dashboard",
+                      "Trang chủ",
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
                   NavigationRailDestination(
                     icon: Icon(Icons.factory),
-                    label: Text("Order"),
+                    label: Text("Đơn hàng"),
                   ),
                   NavigationRailDestination(
                     icon: Icon(Icons.category),
-                    label: Text("Category"),
+                    label: Text("Danh mục"),
                   ),
                   NavigationRailDestination(
                     icon: Icon(Icons.category),
-                    label: Text("Product"),
+                    label: Text("Sản phẩm"),
                   ),
                   NavigationRailDestination(
                     icon: Icon(Icons.person),
-                    label: Text("Account"),
+                    label: Text("Tài khoản"),
                   ),
                   NavigationRailDestination(
                     icon: Icon(Icons.settings),
-                    label: Text("Setting"),
+                    label: Text("Cài đặt"),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.logout),
+                    label: Text("Đăng xuất"),
                   ),
                 ],
                 selectedIndex: currentIndex,
-                onDestinationSelected: (index) {
+                onDestinationSelected: (index) async {
+                  if (index == 6) {
+                    await windowManager.setSize(const Size(400, 400));
+                    await windowManager.setTitle('POS Login');
+                    await windowManager.center();
+
+                    context.go("/login");
+
+                    return;
+                  }
                   setState(() {
                     currentIndex = index;
                   });

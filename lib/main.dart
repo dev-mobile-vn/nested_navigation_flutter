@@ -18,7 +18,7 @@ void main() async {
   WindowOptions windowOptions = WindowOptions(
     size: const Size(400, 400),
     center: true,
-    title: "POS Login",
+    title: "Tiki Pos",
   );
 
   windowManager.waitUntilReadyToShow(windowOptions, () async {
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Tiki Pos',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),

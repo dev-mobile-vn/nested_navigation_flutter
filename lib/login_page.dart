@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                   final screen = await screenRetriever.getPrimaryDisplay();
                   final size = screen.visibleSize;
                   final position = screen.visiblePosition;
-                  await windowManager.setTitle('POS System');
+                  await windowManager.setTitle('Tiki Pos');
                   await windowManager.setSize(size!);
                   await windowManager.setPosition(position!);
                   context.go("/dashboard");
